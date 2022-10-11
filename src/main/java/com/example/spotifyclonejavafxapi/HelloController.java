@@ -27,12 +27,12 @@ import java.util.concurrent.TimeUnit;
 
 public class HelloController implements Initializable {
     @FXML
-    private Label musica, artista;
+    private Label musica;
 
     @FXML
     private ImageView album;
 
-    private static final String accessToken = "BQBMtXAt9OoN4TiKomkQLSSgFbx2OtUsiQyeumX90S_FYINpo8uOI-1vG0fyzKAORoPzjSkPTLmIPGEymf6HFCXv6HbHNkqNmazcGT6oVV1zQYns7FOTcXKuZFs3h7GsIMq6R0WbFgVU-MboU096-CyVnUL9QohZcx3LJexctpKs-R2-F29JXgsL3jnkPLZ6S2jVagc3P17amndRfOLbIStFmVwRhj6Mow";
+    private static final String accessToken = "";
     private static final SpotifyApi spotifyApi = new SpotifyApi.Builder()
             .setAccessToken(accessToken)
             .build();
@@ -57,8 +57,19 @@ public class HelloController implements Initializable {
                 artista.setText(artista.getText() + artistas.getName()+", ");
             }
             album.setImage(new javafx.scene.image.Image(track.getAlbum().getImages()[0].getUrl()));
-            System.out.println(TimeUnit.MILLISECONDS.toMinutes(currentlyPlaying.getProgress_ms())+":"+(TimeUnit.MILLISECONDS.toSeconds(currentlyPlaying.getProgress_ms()) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(currentlyPlaying.getProgress_ms()))));
-            System.out.println(TimeUnit.MILLISECONDS.toMinutes(track.getDurationMs())+":"+(TimeUnit.MILLISECONDS.toSeconds(track.getDurationMs()) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(track.getDurationMs()))));
+            String tempoAtualTexto, duracaoMusicaTexto;
+            if((TimeUnit.MILLISECONDS.toSeconds(currentlyPlaying.getProgress_ms()) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(currentlyPlaying.getProgress_ms()))<10)){
+                tempoAtualTexto =  TimeUnit.MILLISECONDS.toMinutes(currentlyPlaying.getProgress_ms())+":0"+(TimeUnit.MILLISECONDS.toSeconds(currentlyPlaying.getProgress_ms()) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(currentlyPlaying.getProgress_ms())));
+            }else{
+                tempoAtualTexto =  TimeUnit.MILLISECONDS.toMinutes(currentlyPlaying.getProgress_ms())+":"+(TimeUnit.MILLISECONDS.toSeconds(currentlyPlaying.getProgress_ms()) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(currentlyPlaying.getProgress_ms())));
+            }
+            if((TimeUnit.MILLISECONDS.toSeconds(track.getDurationMs())) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(track.getDurationMs()))<10){
+                duracaoMusicaTexto =  TimeUnit.MILLISECONDS.toMinutes(track.getDurationMs())+":0"+(TimeUnit.MILLISECONDS.toSeconds(track.getDurationMs()) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(track.getDurationMs())));
+            }else{
+                duracaoMusicaTexto =  TimeUnit.MILLISECONDS.toMinutes(track.getDurationMs())+":"+(TimeUnit.MILLISECONDS.toSeconds(track.getDurationMs()) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(track.getDurationMs())));
+            }
+            tempoAtual.setText(tempoAtualTexto);
+            duracaoMusica.setText(duracaoMusicaTexto);
         } catch (CompletionException e) {
             System.out.println("Error: " + e.getCause().getMessage());
         } catch (CancellationException e) {

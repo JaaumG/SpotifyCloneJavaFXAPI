@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -20,5 +21,19 @@
             <Font name="Arial Black" size="10.0" />
          </font>
       </Label>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#8d8d8d" height="6.0" layoutX="328.0" layoutY="764.0" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-width: 15;" width="556.0" />
+      <Label fx:id="tempoAtual" layoutX="271.0" layoutY="757.0" text="00:00" textFill="#909090">
+         <font>
+            <Font name="Arial Black" size="10.0" />
+         </font>
+      </Label>
+      <Label fx:id="duracaoMusica" layoutX="898.0" layoutY="760.0" text="00:00" textFill="#909090">
+         <font>
+            <Font name="Arial Black" size="10.0" />
+         </font>
+      </Label>
+      <FontAwesomeIconView fill="WHITE" glyphName="PLAY_CIRCLE" layoutX="597.0" layoutY="742.0" size="35" />
+      <FontAwesomeIconView fill="WHITE" glyphName="BACKWARD" layoutX="524.0" layoutY="742.0" size="35" />
+      <FontAwesomeIconView fill="WHITE" glyphName="FORWARD" layoutX="667.0" layoutY="742.0" size="35" />
    </children>
 </AnchorPane>
