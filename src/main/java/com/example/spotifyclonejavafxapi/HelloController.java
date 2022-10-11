@@ -32,7 +32,7 @@ public class HelloController implements Initializable {
     @FXML
     private ImageView album;
 
-    private static final String accessToken = "BQBMtXAt9OoN4TiKomkQLSSgFbx2OtUsiQyeumX90S_FYINpo8uOI-1vG0fyzKAORoPzjSkPTLmIPGEymf6HFCXv6HbHNkqNmazcGT6oVV1zQYns7FOTcXKuZFs3h7GsIMq6R0WbFgVU-MboU096-CyVnUL9QohZcx3LJexctpKs-R2-F29JXgsL3jnkPLZ6S2jVagc3P17amndRfOLbIStFmVwRhj6Mow";
+    private static final String accessToken = "";
     private static final SpotifyApi spotifyApi = new SpotifyApi.Builder()
             .setAccessToken(accessToken)
             .build();
